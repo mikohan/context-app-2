@@ -9,14 +9,21 @@ import SearchIcon from '@material-ui/icons/Search';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/NavbarStyles';
-// import classes from '*.module.css';
+import { ThemeContext } from './contexts/ThemeContext';
 
 class Navbar extends Component {
+  static contextType = ThemeContext;
+
   render() {
+    const { isDarkMode } = this.context;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appbar} position="static" color="primary">
+        <AppBar
+          className={classes.appbar}
+          position="static"
+          color={isDarkMode ? 'default' : 'primary'}
+        >
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit">
               <span role="img" aria-labelledby="title-id">

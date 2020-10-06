@@ -33,11 +33,11 @@ class Form extends Component {
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel>Email</InputLabel>
-              <Input id="email" name="email" autofocus></Input>
+              <Input id="email" name="email" autoFocus></Input>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel>Password</InputLabel>
-              <Input id="password" name="password" autofocus></Input>
+              <Input id="password" name="password" autoFocus></Input>
             </FormControl>
             <FormControlLabel
               control={<Checkbox color="primary"></Checkbox>}
