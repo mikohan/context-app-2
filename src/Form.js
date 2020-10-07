@@ -14,34 +14,43 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles/FormStyles';
+import { LanguageContext } from './contexts/LanguageContext';
+
+import { translate } from './translate';
 
 class Form extends Component {
+  static contextType = LanguageContext;
   render() {
+    let { language, changeLanguage } = this.context;
+    if (!language) {
+      language = 'english';
+    }
     const { classes } = this.props;
+    const { signIn, email, password, remember } = translate[language];
     return (
       <main className={classes.main}>
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h5">Sign In</Typography>
-          <Select value="english">
+          <Typography variant="h5">{signIn}</Typography>
+          <Select value={language} onChange={changeLanguage}>
             <MenuItem value="english">English</MenuItem>
-            <MenuItem value="franch">Franch</MenuItem>
+            <MenuItem value="russian">Русский</MenuItem>
             <MenuItem value="spanish">Spanish</MenuItem>
           </Select>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel>Email</InputLabel>
+              <InputLabel>{email}</InputLabel>
               <Input id="email" name="email" autoFocus></Input>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel>Password</InputLabel>
+              <InputLabel>{password}</InputLabel>
               <Input id="password" name="password" autoFocus></Input>
             </FormControl>
             <FormControlLabel
               control={<Checkbox color="primary"></Checkbox>}
-              label="Remember Me"
+              label={remember}
             />
             <Button
               className={classes.submit}
@@ -50,7 +59,7 @@ class Form extends Component {
               fullWidth
               color="primary"
             >
-              Sign In
+              {signIn}
             </Button>
           </form>
         </Paper>
