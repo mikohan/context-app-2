@@ -11,17 +11,15 @@ function ThemeProvider(props) {
   //   };
   // }
 
-  const { isDarkMode, setIsDarkMode } = useToggleState(true);
-
-  const toggleTheme = useToggleState(isDarkMode);
+  const [isDarkMode, toggleTheme] = useToggleState(true);
 
   // const toggleTheme = () => {
   //   this.setState({ isDarkMode: !this.state.isDarkMode });
   // };
 
   return (
-    <ThemeContext.Provider value={{ ...this.state, toggleTheme: toggleTheme }}>
-      {this.props.children}
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme: toggleTheme }}>
+      {props.children}
     </ThemeContext.Provider>
   );
 }
